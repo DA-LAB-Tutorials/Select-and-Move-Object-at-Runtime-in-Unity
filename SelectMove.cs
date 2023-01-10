@@ -23,7 +23,7 @@ public class SelectMove : MonoBehaviour
     private float posY;
     private float posZ;
 
-    
+
     private void Start()
     {
         // Get InputField components from the GameObjects
@@ -60,7 +60,7 @@ public class SelectMove : MonoBehaviour
         }
 
         // Select an object on the mouse Click if it has a Selectable tag using Raycast 
-        if (Input.GetKey(KeyCode.Mouse0) && !EventSystem.current.IsPointerOverGameObject()) 
+        if (Input.GetKey(KeyCode.Mouse0) && !EventSystem.current.IsPointerOverGameObject())
         {
             if (selectedTransform != null)
             {
@@ -114,18 +114,24 @@ public class SelectMove : MonoBehaviour
     // Attach to OnValueChanged event of corresponding input fields. Get value from the field and call the SetSelectedPos method
     public void SetPosX()
     {
-        posX = float.Parse(inputPosX.text);
-        SetSelectedPos();
+        if (float.TryParse(inputPosX.text, out posX))
+        {
+            SetSelectedPos();
+        }
     }
     public void SetPosY()
     {
-        posY = float.Parse(inputPosY.text);
-        SetSelectedPos();
+        if (float.TryParse(inputPosY.text, out posY))
+        {
+            SetSelectedPos();
+        }
     }
     public void SetPosZ()
     {
-        posZ = float.Parse(inputPosZ.text);
-        SetSelectedPos();
+        if (float.TryParse(inputPosZ.text, out posZ))
+        {
+            SetSelectedPos();
+        }
     }
 
 
@@ -148,14 +154,3 @@ public class SelectMove : MonoBehaviour
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
